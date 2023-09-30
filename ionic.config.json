@@ -1,0 +1,7 @@
+{
+  "name": "harkwise-marketing-site",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
