@@ -45,14 +45,14 @@ ion-button {
     font-weight: bold;
 }
 
-/* Hover and active states */
 ion-button:hover {
-    --background: darken(var(--ion-color-primary), 10%);
+    --background: var(--ion-color-primary-darken-10);
 }
 
 ion-button:active {
-    --background: darken(var(--ion-color-primary), 15%);
+    --background: var(--ion-color-primary-darken-15);
 }
+
 
 /* Add padding to the top of the first content section */
 .MainContent {

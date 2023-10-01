@@ -23,7 +23,10 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import Report from './pages/ExampleReport';
 
+import initGTM from './utils/gtm';
+
 setupIonicReact();
+initGTM();
 
 const App: React.FC = () => (
   <IonApp>
