@@ -21,6 +21,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
+import Report from './pages/ExampleReport';
 
 setupIonicReact();
 
@@ -34,6 +35,7 @@ const App: React.FC = () => (
         <Route exact path="/">
           <Redirect to="/home" />
         </Route>
+        <Route exact path="/report" component={Report} />
       </IonRouterOutlet>
     </IonReactRouter>
   </IonApp>

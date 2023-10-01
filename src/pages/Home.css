@@ -1,0 +1,94 @@
+/* Add padding to all main sections */
+.section {
+    padding: 20px;
+}
+
+/* Add margin to elements for proper spacing */
+.section h1,
+.section h2,
+.section p,
+.section button {
+    margin-bottom: 15px;
+}
+
+h1 {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+h2 {
+    font-size: 1.5em;
+}
+
+p {
+    font-size: 1em;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Define primary and secondary colors */
+:root {
+    --ion-color-primary: #1E3D58; 
+    --ion-color-secondary: #48A9A6;
+}
+
+
+ion-label {
+    font-size: 20px;
+}
+
+/* General button styling */
+ion-button {
+    padding: 12px 24px;
+    font-size: 1em;
+    font-weight: bold;
+}
+
+/* Hover and active states */
+ion-button:hover {
+    --background: darken(var(--ion-color-primary), 10%);
+}
+
+ion-button:active {
+    --background: darken(var(--ion-color-primary), 15%);
+}
+
+/* Add padding to the top of the first content section */
+.MainContent {
+    padding-top: 60px; /* Adjust based on the actual height of your header */
+}
+
+/* Ensure header is always on top */
+ion-header {
+    z-index: 10;
+}
+
+/* Style for the main content title */
+.MainContent h1 {
+    font-size: 2em;
+    font-weight: bold;
+    margin-bottom: 15px;
+    text-align: center; /* Center align the title */
+}
+
+/* Style for the description */
+.MainContent p {
+    font-size: 1.2em;
+    max-width: 600px;
+    margin: 15px auto; /* Center align the paragraph and provide spacing */
+    text-align: center; /* Center align the text */
+}
+
+.hackyspacing {
+    height:5px;
+}
+
+
+
+
+
+
+
+
+
