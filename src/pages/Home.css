@@ -36,6 +36,10 @@ p {
 
 ion-label {
     font-size: 20px;
+    text-overflow: clip !important;
+    white-space: normal !important;
+    }
+    
 }
 
 /* General button styling */
@@ -44,6 +48,9 @@ ion-button {
     font-size: 1em;
     font-weight: bold;
 }
+
+--ion-color-primary-darken-10: #1A374F; /* Example value */
+--ion-color-primary-darken-15: #162B46; /* Example value */
 
 ion-button:hover {
     --background: var(--ion-color-primary-darken-10);

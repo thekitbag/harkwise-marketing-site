@@ -19,8 +19,9 @@ const useForm = () => {
         let tempErrors: { name?: string, email?: string } = {};
     
         if (!name.trim()) tempErrors.name = "Name is required";
-    
+        
         const emailError = emailValidation(email);
+
         if (emailError) {
             tempErrors.email = emailError;
         }

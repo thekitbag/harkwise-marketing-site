@@ -9,9 +9,13 @@ const MainContent: React.FC = () => {
   const [isSubmitted, setIsSubmitted] = useState(false);
 
   const handleSubmit = async () => {
-    if (!validate()) return;  // Don't proceed if there are validation errors
+    if (!validate()) return;
+    
+    (window as any).dataLayer.push({
+        event: 'form_submit_attempt'
+      });
 
-    console.log('trying to handle submit')
+    setIsSubmitted(true);  // setting here to avoid long wait
 
     try {
       const response = await fetch('/api/interest', {
@@ -22,25 +26,54 @@ const MainContent: React.FC = () => {
         body: JSON.stringify({ name, email }),
       });
       
+      
       const data = await response.json();
       if (data.status === 'success') {
-        setIsSubmitted(true); 
+        (window as any).dataLayer.push({
+            event: 'form_submit_success'
+          });
       } else {
-        // Handle error
+        (window as any).dataLayer.push({
+            event: 'form_submit_failure'
+          });
       }
-    } catch (error) {
-      console.error('There was an error!', error);
-    }
+    } catch (error)  {
+        console.error('There was an error!', error);
+        (window as any).dataLayer.push({
+          event: 'form_submit_error',
+          error_message: error
+        });
+      }
   };
+    
+  
+    const handleNameChange = (e: any) => {
+        setName(e.detail.value!);
+        (window as any).dataLayer.push({
+            event: 'input_name',
+            input_value: e.detail.value!
+        });
+    }
 
+    const handleInputChange = (e: any) => {
+        setEmail(e.detail.value!);
+    };
+    
+    const handleInputCommit = (e: any) => {
+        (window as any).dataLayer.push({
+            event: 'input_email',
+            input_value: e.detail.value!
+        });
+    };
+
+      
     return (
         <IonCard>
             <IonCardContent>
                 <IonCardHeader><h1>Welcome to Harkwise</h1></IonCardHeader>
-                <h2>Get instant, anonymous feedback from your customers inside your establishment and a receive an AI-generated weekly report that tells you how you can make them happier.</h2>
+                <h2>Get instant, anonymous feedback from your customers whilst inside your establishment and receive an AI-generated weekly report that tells you how you can make them happier.</h2>
                 <IonCardContent>
                     {isSubmitted ? (
-                    // Display this JSX when the form is successfully submitted
                     <div className="submission-success-container">
                         <IonIcon icon={thumbsUpOutline} style={{ fontSize: '4em' }} />
                         <IonText>
@@ -52,15 +85,16 @@ const MainContent: React.FC = () => {
                     <>
                         Enter your details and we'll be in touch shortly.
                         <IonInput
-                        value={name}
-                        placeholder="Your Name"
-                        onIonChange={(e) => setName(e.detail.value!)}
+                            value={name}
+                            placeholder="Your Name"
+                            onIonChange={handleNameChange}
                         />
                         {errors.name && <p style={{ color: 'red' }}>{errors.name}</p>}
                         <IonInput
-                        value={email}
-                        placeholder="Your Email"
-                        onIonChange={(e) => setEmail(e.detail.value!)}
+                            value={email}
+                            placeholder="Your Email"
+                            onIonInput={handleInputChange}
+                            onIonChange={handleInputCommit}
                         />
                         {errors.email && <p style={{ color: 'red' }}>{errors.email}</p>}
                         <IonButton expand="block" onClick={handleSubmit}>
